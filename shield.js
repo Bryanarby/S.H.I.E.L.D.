@@ -6,7 +6,7 @@ var scriptElement = document.getElementById( 'shieldScript' ),
 	SHIELD = {
 		'baseUrl': baseUrl,
 		'branch' : 'M',
-		'version': 0.1b1
+		'version': 0.11
 	};
 
 // Load external libraries
