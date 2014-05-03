@@ -1,5 +1,5 @@
 function setOverrides(){
-
+  return;
 }
 
 function autoCombat(focus){
