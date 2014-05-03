@@ -16,7 +16,7 @@ function autoCombat(focus){
 }
 
 function autoSell(focus) {
-  function (){game.inventory.slots.forEach(function(i,x){
+  game.inventory.slots.forEach(function(i,x){
  if(i != null){
    var newSlotindex = null;
    var iR = i.itemRarity;
@@ -40,7 +40,7 @@ function autoSell(focus) {
    }
    game.inventory.sellItem(x);
  }
-});}
+});
 }
 function autoShield() {
   autoCombat(0);
