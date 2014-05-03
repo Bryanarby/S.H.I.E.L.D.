@@ -5,15 +5,15 @@ function setOverrides(){
 function autoCombat(focus){
   if(game.inBattle){
     if(game.monster.rarity == MonsterRarity.COMMON || game.player.health/game.player.getMaxHealth() > .50){
-      while(game.player.health > game.monster.damage){
+      while(game.player.health > game.monster.damage && game.monster.health > 0){
         if(focus==0 && game.monster.rarity != MonsterRarity.BOSS){  
           game.attack();
 	      }else {game.leaveBattle(); autoSell(); game.enterBattle();}
+      }
+    } else {
+      game.enterBattle();
     }
-  } else {
-    game.enterBattle();
   }
-}
 }
 
 function autoSell(focus) {
