@@ -27,7 +27,7 @@ function calcExpSec(level){
   var avgMonsterHp = 11* (game.monsterCreator.monsterBaseHealth + level + Math.pow(1.35, level - 1));
   var avgMonsterExp = 2.875 * (game.monsterCreator.mosnterBaseExperienceWorth * Math.pow(1.08, level -1 ));
   var avgCritModifier = (game.player.getCritDamage()/100) * (game.player.getCritChance()/ 100);
-  var avgMonsterKillSec = avgMonsterHP/(calcAvgDamage()*avgCritmodifier*calcAttackSec());
+  var avgMonsterKillSec = avgMonsterHp/(calcAvgDamage()*avgCritmodifier*calcAttackSec());
   return avgMonsterExp * avgMonsterKillSec;
 }
 
