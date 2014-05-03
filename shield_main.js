@@ -85,12 +85,12 @@ function bestExpSec() {
 }
 
 function autoShield() {
-  bestExpSec();
+  if(!game.inBattle)bestExpSec();
   game.enterBattle();
   autoCombat(0);
   autoSell(0);
   
-  setTimeout(autoShield,100);
+  setTimeout(autoShield,1000);
 }
 
 function SHIELDStart(){
