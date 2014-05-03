@@ -14,6 +14,7 @@ function autoCombat(focus){
     game.enterBattle();
   }
 }
+}
 
 function autoSell(focus) {
   game.inventory.slots.forEach(function(i,x){
