@@ -5,7 +5,7 @@ function setOverrides(){
 function calcMonsterHit(ignoreFreeze){
   // Reduce the damage based on the amount of armour
   var damage = game.monster.damage;
-  var damageReduction = this.calculateDamageReduction(); // currently capped at 99%
+  var damageReduction = game.player.calculateDamageReduction(); // currently capped at 99%
   var newDamage = damage - Math.floor(damage * (damageReduction / 100));
   if (newDamage < 0) { newDamage = 0; }
   return (ignoreFreeze || (game.monster.canAttack && game.monster.alive)) ? newDamage:0;
