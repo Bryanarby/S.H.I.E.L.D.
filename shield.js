@@ -14,7 +14,7 @@ var script_list = [
     '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',
     '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css',
     '//cdn.jsdelivr.net/underscorejs/1.6.0/underscore-min.js',
-    SHIELD.baseUrl + '/shield_main.js',
+    SHIELD.baseUrl + '/shield_main.js'
   ]
   
 SHIELD.loadInterval = setInterval(function() {
