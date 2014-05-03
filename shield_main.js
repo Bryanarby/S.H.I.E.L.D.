@@ -13,7 +13,7 @@ function calcMonsterHit(ignoreFreeze){
 
 //attacks a second relies on surviving the enemy hit(so hp * damage reduction), and how fast you can regen it.
 function calcAttackSec(){
-  var monsterhit = calcMonsterHit(0);
+  var monsterhit = calcMonsterHit(1);
   return monsterhit/(game.player.getHp5()/5);
 }
 
