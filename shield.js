@@ -1,7 +1,7 @@
 // Global Variables
 var scriptElement = document.getElementById( 'shieldScript' ),
 	baseUrl = scriptElement !== null ?
-		scriptElement.getAttribute('src').replace(/\/schieldScript\.js$/, '') :
+		scriptElement.getAttribute('src').replace(/\/shield\.js$/, '') :
 		'https://raw.github.com/Bryanarby/S.H.I.E.L.D./master',
 	SHIELD = {
 		'baseUrl': baseUrl,
