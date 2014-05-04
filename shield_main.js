@@ -75,7 +75,7 @@ function autoSell(focus) {
 function bestExpSec() {
   var target = 1;
   var expSec = 0;
-  for(var i = 1; i <= game.player.level; i++){
+  for(var i = Math.floor(game.player.level/2); i <= game.player.level; i++){
     if(calcExpSec(i) >= expSec){
       target = i;
       expSec = calcExpSec(i);
@@ -90,7 +90,7 @@ function autoShield() {
   autoCombat(0);
   autoSell(0);
   
-  setTimeout(autoShield,1000);
+  //setTimeout(autoShield,1000);
 }
 
 function SHIELDStart(){
