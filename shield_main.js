@@ -71,10 +71,10 @@ function autoCombat(focus){
           break;
         }
         switch(focus){
-        	case '0': while(gam.monster.rarity != MonsterRarity.COMMON){
+        	case '0': while(game.monster.rarity != MonsterRarity.COMMON){
         		game.leaveBattle();game.enterBattle();
         	};break;
-        	case '1': while(gam.monster.rarity == MonsterRarity.COMMON){
+        	case '1': while(game.monster.rarity == MonsterRarity.COMMON){
         		game.leaveBattle();game.enterBattle();
         	};break;
         }
