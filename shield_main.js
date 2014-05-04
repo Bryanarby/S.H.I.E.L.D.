@@ -111,10 +111,14 @@ function bestExpSec() {
   var target = 1;
   var expSec = 0;
   for(var i = Math.floor(game.player.level/2); i <= game.player.level; i++){
+    game.battleLevel=i;
+    game.enterBattle();
+  
     if(calcExpSec(i) >= expSec){
       target = i;
       expSec = calcExpSec(i);
     }
+    game.leaveBattle();
   }
   game.battleLevel=target;
 }
