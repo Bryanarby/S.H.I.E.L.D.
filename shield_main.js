@@ -92,21 +92,21 @@ function autoCombat(focus){
 
 function autoSell(focus) {
  
- for(var x = 10; x < game.inventory.slots; x++){
+ for(var x = 10; x < game.inventory.slots.length; x++){
    var i = game.inventory.slots[x];
    if(i!= null){
      var iR = i.itemRarity;
      
      if(focus==0){
      	switch(i.type){
-     		case ItemType.HELM: if(game.equipment.helm().itemRarity < iR) game.equipment.equipItemInSlot(i,0,x); break;
-        case ItemType.SHOULDERS: if(game.equipment.shoulders().itemRarity< iR)game.equipment.equipItemInSlot(i,1,x); break;
-        case ItemType.CHEST: if(game.equipment.chest().itemRarity < iR) game.equipment.equipItemInSlot(i,2,x); break;
-        case ItemType.LEGS: if(game.equipment.legs().itemRarity < iR) game.equipment.equipItemInSlot(i,3,x); break;
-        case ItemType.WEAPON: if(game.equipment.weapon().maxDamage+game.equipment.weapon().damageBonus < i.maxDamage + i.damageBonus) {game.equipment.equipItemInSlot(i,4,x);} break;
-        case ItemType.GLOVES: if(game.equipment.gloves().itemRarity < iR) game.equipment.equipItemInSlot(i,5,x); break;
-        case ItemType.BOOTS: if(game.equipment.boots().itemRarity < iR) game.equipment.equipItemInSlot(i,6,x); break;
-        case ItemType.TRINKET:
+     	  case ItemType.HELM: if(game.equipment.helm().itemRarity < iR) game.equipment.equipItemInSlot(i,0,x); break;
+          case ItemType.SHOULDERS: if(game.equipment.shoulders().itemRarity< iR)game.equipment.equipItemInSlot(i,1,x); break;
+          case ItemType.CHEST: if(game.equipment.chest().itemRarity < iR) game.equipment.equipItemInSlot(i,2,x); break;
+          case ItemType.LEGS: if(game.equipment.legs().itemRarity < iR) game.equipment.equipItemInSlot(i,3,x); break;
+          case ItemType.WEAPON: if(game.equipment.weapon().maxDamage+game.equipment.weapon().damageBonus < i.maxDamage + i.damageBonus) {game.equipment.equipItemInSlot(i,4,x);} break;
+          case ItemType.GLOVES: if(game.equipment.gloves().itemRarity < iR) game.equipment.equipItemInSlot(i,5,x); break;
+          case ItemType.BOOTS: if(game.equipment.boots().itemRarity < iR) game.equipment.equipItemInSlot(i,6,x); break;
+          case ItemType.TRINKET:
           if(game.equipment.trinket1().itemRarity < iR){game.equipment.equipItemInSlot(i,7,x); break;}
   	      if(game.equipment.trinket2().itemRarity < iR) game.equipment.equipItemInSlot(i,8,x); break;
         case ItemType.OFF_HAND: if(game.equipment.off_hand().itemRarity < iR) game.equipment.equipItemInSlot(i,9,x); break; 
