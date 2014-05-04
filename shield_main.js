@@ -124,7 +124,7 @@ function bestExpSec() {
 }
 
 function autoShield() {
-  if(!game.inBattle)bestExpSec();
+  //if(!game.inBattle)bestExpSec();
   game.enterBattle();
   autoCombat(0);
   autoSell(0);
@@ -134,5 +134,6 @@ function autoShield() {
 
 function SHIELDStart(){
   autoSell(0);
+  bestExpSec();
   autoShield();
 }
