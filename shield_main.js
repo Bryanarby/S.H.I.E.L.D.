@@ -10,6 +10,13 @@ function mercEfficiency() {
   	}).sort(function(a,b){return a.efficiency > b.efficiency});
 }
 
+function autoBuy(){
+	 var bestPurchase = efficiency()[0];
+  if (game.player.gold > game.mercenaryManager[bestPurchase.name.toLowerCase() + "Price"]) {
+    game.mercenaryManager.purchaseMercenary(bestPurchase.name);
+  }
+}
+
 function calcMonsterRarityOdds(battleLevel, battledepth){
 	var rareChance = 0.001 + (battleLevel / 250);
         if (rareChance > 0.1) { rareChance = 0.1; }
@@ -137,7 +144,7 @@ function autoShield() {
   //if(!game.inBattle)bestExpSec();
   autoCombat(0);
   autoSell(0);
-  
+  autoBuy();
   setTimeout(autoShield,1000);
 }
 
