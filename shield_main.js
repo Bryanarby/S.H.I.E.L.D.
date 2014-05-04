@@ -75,6 +75,8 @@ function autoCombat(focus){
 	      //}else {game.leaveBattle(); autoSell(); game.enterBattle();}
       }
     } 
+  } else {
+    game.enterBattle();	
   }
 }
 
@@ -123,7 +125,6 @@ function bestExpSec() {
 
 function autoShield() {
   //if(!game.inBattle)bestExpSec();
-  game.enterBattle();
   autoCombat(0);
   autoSell(0);
   
