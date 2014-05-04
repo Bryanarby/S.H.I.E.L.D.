@@ -70,9 +70,15 @@ function autoCombat(focus){
         if(game.inventory.slots[25] != null){
           break;
         }
-        //if(focus==0 && game.monster.rarity != MonsterRarity.BOSS){  
+        switch(focus){
+        	case '0': while(gam.monster.rarity != MonsterRarity.COMMON){
+        		game.leaveBattle();game.enterBattle();
+        	};break;
+        	case '1': while(gam.monster.rarity == MonsterRarity.COMMON){
+        		game.leaveBattle();game.enterBattle();
+        	};break;
+        }
           game.attack();
-	      //}else {game.leaveBattle(); autoSell(); game.enterBattle();}
       }
     } 
   } 
