@@ -65,9 +65,10 @@ function autoCombat(focus){
   if(game.inBattle){
     if(game.monster.rarity == MonsterRarity.COMMON || game.player.health/game.player.getMaxHealth() > .50){
       var level = game.player.level;
+      var attackCounter = 1;
       while(game.player.health > calcMonsterHit() && game.monster.health > 0){
-        //inventory full? take a break
-        if(game.inventory.slots[25] != null){
+        //inventory full? too many attacks? take a break
+        if(game.inventory.slots[25] != null | attackCounter >= 1000 ){
           break;
         }
         switch(focus){
@@ -79,6 +80,7 @@ function autoCombat(focus){
         	};break;
         }
           game.attack();
+          attackCounter++;
       }
     } 
   } 
