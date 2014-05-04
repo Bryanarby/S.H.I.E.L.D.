@@ -75,8 +75,6 @@ function autoCombat(focus){
 	      //}else {game.leaveBattle(); autoSell(); game.enterBattle();}
       }
     } 
-  } else {
-    game.enterBattle();
   }
 }
 
