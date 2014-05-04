@@ -75,9 +75,11 @@ function autoCombat(focus){
 	      //}else {game.leaveBattle(); autoSell(); game.enterBattle();}
       }
     } 
-  } else {
+  } 
+  //the else case here can only join once we can decide the level we're fighting properly.
+  /*else {
     game.enterBattle();	
-  }
+  }*/
 }
 
 function autoSell(focus) {
@@ -133,6 +135,6 @@ function autoShield() {
 
 function SHIELDStart(){
   autoSell(0);
-  bestExpSec();
+  //bestExpSec();
   autoShield();
 }
