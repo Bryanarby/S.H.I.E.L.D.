@@ -2,6 +2,34 @@ function setOverrides(){
   return;
 }
 
+function mercEfficiency() {
+  return mercs.map(function(m){
+  	return {name : m.toUpperCase(), 
+  	efficiency : game.mercenaryManager[m + 'Price'] / parseFloat(game.mercenaryManager.getGps().replace(/,/g,'')) 
+  	           + game.mercenaryManager[m + 'Price'] / game.mercenaryManager.getMercenariesGps(m.toUpperCase())}
+  	}).sort(function(a,b){return a.efficiency > b.efficiency});
+}
+
+function calcMonsterRarityOdds(battleLevel, battledepth){
+	var rareChance = 0.001 + (battleLevel / 250);
+        if (rareChance > 0.1) { rareChance = 0.1; }
+        var eliteChance = 0;
+        if (battleLevel >= 10) {
+            eliteChance = 0.03 + (battleLevel / 6000);
+            if (eliteChance > 0.05) { eliteChance = 0.05; }
+        }
+        var bossChance = 0;
+        if (battleLevel >= 30) {
+            bossChance = 0.03 + (battleLevel / 12000);
+            if (bossChance > 0.01) { bossChance = 0.01; }
+        }
+        var normalChance = 1- (rareChance + eliteChance + bossChance);
+	return[normalChance,
+		rareChance,
+		eliteChance,
+		bossChance
+	]
+}
 function calcMonsterHit(ignoreFreeze){
   // Reduce the damage based on the amount of armour
   var damage = game.monster.damage;
@@ -23,9 +51,11 @@ function calcAvgDamage(){
   return damage;
 }
 function calcExpSec(level){
-  //todo fix this for monsterSpawn odds
-  var avgMonsterHp = 11* (game.monsterCreator.monsterBaseHealth + level + Math.pow(1.35, level - 1));
-  var avgMonsterExp = 2.875 * (game.monsterCreator.mosnterBaseExperienceWorth * Math.pow(1.08, level -1 ));
+  var rarityOdds = calcMonsterRarityOdds(level);
+  var avgHp = ((rarityOdds[0]*1) + (rarityOdds[1]*3) + (rarityOdds[2]*10) + (rarityOdds[3]* 30));
+  var avgExp = ((rarityOdds[0]*1) + (rarityOdds[1]*1.5) + (rarityOdds[2]*3) + (rarityOdds[3]* 6));
+  var avgMonsterHp = avgHp* (game.monsterCreator.monsterBaseHealth + level + Math.pow(1.35, level - 1));
+  var avgMonsterExp = avgExp * (game.monsterCreator.monsterBaseExperienceWorth * Math.pow(1.08, level -1 ));
   var avgCritModifier = (game.player.getCritDamage()/100) * (game.player.getCritChance()/ 100);
   var avgMonsterKillSec = avgMonsterHp/(calcAvgDamage()*avgCritModifier*calcAttackSec());
   return avgMonsterExp * avgMonsterKillSec;
@@ -34,14 +64,19 @@ function calcExpSec(level){
 function autoCombat(focus){
   if(game.inBattle){
     if(game.monster.rarity == MonsterRarity.COMMON || game.player.health/game.player.getMaxHealth() > .50){
+      var level = game.player.level;
       while(game.player.health > calcMonsterHit() && game.monster.health > 0){
+        //inventory full? take a break
+        if(game.inventory.slots[25] != null){
+          break;
+        }
         //if(focus==0 && game.monster.rarity != MonsterRarity.BOSS){  
           game.attack();
 	      //}else {game.leaveBattle(); autoSell(); game.enterBattle();}
       }
-    } else {
-      game.enterBattle();
-    }
+    } 
+  } else {
+    game.enterBattle();
   }
 }
 
@@ -86,11 +121,11 @@ function bestExpSec() {
 
 function autoShield() {
   if(!game.inBattle)bestExpSec();
-  //game.enterBattle();
-  //autoCombat(0);
-  //autoSell(0);
+  game.enterBattle();
+  autoCombat(0);
+  autoSell(0);
   
-  //setTimeout(autoShield,1000);
+  setTimeout(autoShield,1000);
 }
 
 function SHIELDStart(){
